@@ -1,5 +1,5 @@
 {
-  "name": "angular-starter",
+  "name": "cmg-borrower-portal",
   "version": "3.0.0",
   "license": "MIT",
   "scripts": {
@@ -20,7 +20,7 @@
     "build:qa": "ng build --configuration=qa",
     "build:uat": "ng build --configuration=uat",
     "build:prod": "ng build --configuration=production",
-    "deploy": "ng build --prod --base-href /angular-starter/ && angular-cli-ghpages --no-silent --dir=dist/browser",
+    "deploy": "ng build --prod --base-href /cmg-borrower-portal/ && angular-cli-ghpages --no-silent --dir=dist/browser",
     "gzip": "gzipper --verbose ./dist/browser",
     "docs": "compodoc -p tsconfig.json",
     "docs:serve": "compodoc -p tsconfig.json -s",
@@ -30,7 +30,7 @@
     "e2e": "ng e2e",
     "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
     "serve:ssr": "node dist/server",
-    "build:client-and-server-bundles": "ng build --prod && ng run angular-starter:server",
+    "build:client-and-server-bundles": "ng build --prod && ng run cmg-borrower-portal:server",
     "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
     "build-ie-polyfills": "webpack-cli src/polyfills-ie.ts -o src/assets/scripts/polyfills-ie.min.js -c webpack-polyfill.config.js"
   },
