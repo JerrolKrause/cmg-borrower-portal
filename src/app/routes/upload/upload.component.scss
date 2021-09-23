@@ -1,0 +1,11 @@
+/* Include site variables and mixins */
+@import '../../../styles/globals';
+table {
+  td {
+    vertical-align: middle;
+  }
+}
+.lo-mugshot {
+  width: 70px;
+  height: 70px;
+}

@@ -1,0 +1,42 @@
+<ng-container *ngIf="!config?.data">
+  <div class="mb-3">
+    What kind of document is this?
+    <p-autoComplete
+      field="label"
+      [minLength]="2"
+      [dropdown]="true"
+      [(ngModel)]="text"
+      [suggestions]="results"
+      (completeMethod)="search($event)"
+    ></p-autoComplete>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!files; else yepFiles">
+  <nts-file-uploader
+    (filesAdded)="filesAdded($event)"
+    [placeholder]="'Click or drag and drop to <strong>upload ' + (config?.data?.label || 'Other Documents') + '</strong>'"
+  ></nts-file-uploader>
+</ng-container>
+<ng-template #yepFiles>
+  <table class="table table-sm table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Size</th>
+        <th>Last Modified</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let file of files">
+        <td>{{ file.file.name }}</td>
+        <td>{{ file.file.size | number }}</td>
+        <td>{{ file.file.lastModifiedDate | date: 'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<div class="text-right">
+  <button class="p-button" (click)="submit()"><i class="fas fa-upload mr-2"></i> Upload</button>
+</div>

@@ -1,0 +1,139 @@
+<div class="container">
+  <h1>Borrower Portal</h1>
+  <div class="row">
+    <div class="col col-12 col-md-9 mb-3" style="position: relative; z-index: 5;">
+      <p-tabView>
+        <p-tabPanel>
+          <ng-template pTemplate="header">
+            <span class="d-lg-none d-xl-none">Docs To Upload</span>
+            <span class="d-none d-md-inline d-lg-inline d-xl-inline">Documents To Be Uploaded </span>
+            <span class="ml-2 badge badge-warning">{{ totalDocs }}</span>
+          </ng-template>
+          <p-accordion [multiple]="true">
+            <p-accordionTab [selected]="true" *ngFor="let borrower of borrowers">
+              <ng-template pTemplate="header">
+                {{ borrower.label }} <span class="ml-2 badge badge-warning">{{ borrower.docs.length }}</span>
+              </ng-template>
+              <ng-template pTemplate="content">
+                <table class="table table-sm table-bordered table-striped mb-0">
+                  <tbody>
+                    <tr *ngFor="let item of borrower.docs">
+                      <td>
+                        {{ item.label }}
+                        <ng-container *ngIf="item.hint">
+                          <br />
+                          <small
+                            ><em>
+                              {{ item.hint }}
+                            </em></small
+                          >
+                        </ng-container>
+                      </td>
+                      <td class="text-right upload-btn">
+                        <div class="d-block d-lg-none d-xl-none">
+                          <label class="p-button d-block" style="font-size: 16px;">
+                            <i class="fas fa-camera"></i> Take Picture
+                            <input type="file" multiple class="d-none" />
+                          </label>
+                        </div>
+                        <div class="d-none d-lg-block d-xl-block">
+                          <p-splitButton label="Upload" (onClick)="openUploadModal(item)" icon="fas fa-upload" [model]="items"></p-splitButton>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ng-template>
+            </p-accordionTab>
+          </p-accordion>
+        </p-tabPanel>
+        <p-tabPanel header="Completed">
+          <ng-template pTemplate="header">
+            <span>Completed</span>
+            <span class="ml-2 badge badge-warning">2</span>
+          </ng-template>
+          <table class="table table-sm table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Document</th>
+                <th>Uploaded By</th>
+                <th>Uploaded on</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of completed">
+                <td>
+                  {{ item.label }}
+                </td>
+                <td>
+                  John Borrower
+                </td>
+                <td>
+                  9/20/21 @ 2:21pm
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </p-tabPanel>
+      </p-tabView>
+      <div class="mt-4">
+        <h2>Upload Other Documents</h2>
+        <div class="card">
+          <div class="card-body">
+            <app-upload></app-upload>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-12 col-md-3 mb-3">
+      <h2>Your Loan Team</h2>
+      <hr />
+      <!-- -->
+      <div class="d-flex mb-2">
+        <div class="mr-2">
+          <div class="lo-mugshot" style="background-image: url('https://i.ibb.co/qnBWTvD/john-doe.jpg');"></div>
+        </div>
+        <div>
+          <h3 class="mb-0"><strong>John Doe</strong></h3>
+          Loan Officer<br />
+        </div>
+      </div>
+      <div>
+        <i class="fas fa-phone"></i> <a href="tel:3128675309"> (555) 345-5309</a><br />
+        <i class="fas fa-envelope"></i> <a href="mailto:john.doe@example.com"> john.joe@example.com</a>
+      </div>
+      <hr />
+      <!-- -->
+      <div class="d-flex mb-2">
+        <div class="mr-2">
+          <div class="lo-mugshot" style="background-image: url('https://i.ibb.co/sJZsPKG/jane-doe.jpg');"></div>
+        </div>
+        <div>
+          <h3 class="mb-0"><strong>Stacey Smith</strong></h3>
+          Processor<br />
+        </div>
+      </div>
+      <div>
+        <i class="fas fa-phone"></i> <a href="tel:3128675309"> (555) 322-3244</a><br />
+        <i class="fas fa-envelope"></i> <a href="mailto:john.doe@example.com"> stacey.smith@example.com</a>
+      </div>
+      <hr />
+      <!-- -->
+      <div class="d-flex mb-2">
+        <div class="mr-2">
+          <div class="lo-mugshot" style="background-image: url('https://i.ibb.co/G001y5H/stacy-awesome.jpg"></div>
+        </div>
+        <div>
+          <h3 class="mb-0"><strong>Jane Somebody</strong></h3>
+          Underwriter<br />
+        </div>
+      </div>
+      <div>
+        <i class="fas fa-phone"></i> <a href="tel:3128675309"> (555) 322-3244</a><br />
+        <i class="fas fa-envelope"></i> <a href="mailto:john.doe@example.com"> jane.somebody@example.com</a>
+      </div>
+      <hr />
+      <!-- -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="container">
+  <h1>Upload Documents</h1>
+  <div class="alert alert-success" *ngIf="success">
+    Documents uploaded successfully! Would you like to <a (click)="success = false">upload more documents?</a>
+  </div>
+  <div *ngIf="!success">
+    <table class="table table-sm">
+      <tbody>
+        <tr>
+          <td>
+            <strong>Send To</strong>
+          </td>
+          <td>
+            <div>
+              <div class="d-flex mb-2">
+                <div class="mr-2">
+                  <div class="lo-mugshot" style="background-image: url('/assets/img/jerrol-krause.jpg');"></div>
+                </div>
+                <div>
+                  <h3 class="mb-0"><strong>Jerrol Krause</strong></h3>
+                  Loan Officer<br />
+                  NMLS: 12345
+                </div>
+              </div>
+              <div>
+                <i class="fas fa-phone"></i> <a href="tel:3128675309"> (555) 345-5309</a><br />
+                <i class="fas fa-envelope"></i> <a href="mailto:john.doe@example.com"> jerrol.krause@example.com</a>
+              </div>
+              <div>
+                <label><input type="checkbox" checked /> Notify me when Jerrol Krause receives my documents</label>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Your Name</strong></td>
+          <td><input class="form-control" /></td>
+        </tr>
+        <tr>
+          <td><strong>Your Email Address</strong></td>
+          <td><input class="form-control" /></td>
+        </tr>
+        <tr>
+          <td><strong>Your Message</strong></td>
+          <td><textarea class="form-control"></textarea></td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;"><strong>Attachments</strong></td>
+          <td>
+            <app-upload [showSubmit]="false" [canSelectBorrower]="false"></app-upload>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="text-right">
+      <button class="p-button" (click)="success = true"><i class="fas fa-upload mr-2"></i> Upload</button>
+    </div>
+  </div>
+</div>
