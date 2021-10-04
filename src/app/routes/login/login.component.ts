@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { isPlatformBrowser } from '@angular/common';
 
 import { SettingsService } from '$settings';
 import { AuthState, AuthService } from 'src/app/shared/services/project/auth.service';
@@ -10,6 +9,14 @@ import { IErrorApi } from 'src/typings';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styles: [
+    `
+      td,
+      th {
+        vertical-align: middle;
+      }
+    `,
+  ],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   public formMain!: FormGroup;
@@ -23,6 +30,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   public loggedout: boolean | undefined;
   public showPassword = false;
 
+  public frame = 1;
+
   constructor(
     private authService: AuthService,
     public route: ActivatedRoute,
@@ -33,13 +42,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     let isLogin, hasLogin;
-    if (isPlatformBrowser && window.localStorage.rememberLogin && this.settings.userName) {
-      isLogin = this.settings.userName;
-    }
-
-    if (isPlatformBrowser && window.localStorage.rememberLogin) {
-      hasLogin = true;
-    }
 
     this.authService.logOutModal = null; // Get rid of logout modal if it persists
 
