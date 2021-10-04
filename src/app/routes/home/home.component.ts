@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
+import { map } from 'rxjs/operators';
 import { UploadComponent } from './components/modals/upload/upload.component';
 
 @Component({
@@ -22,12 +24,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     },
   ];
 
+  public scenario2$ = this.route.queryParams.pipe(map(p => !!p.config));
+
   public completed = [{ label: 'Drivers License' }, { label: 'Bank Statements' }];
 
   public totalDocs = this.borrowers.map(b => b.docs.length).reduce((a, b) => a + b, 0);
 
   public items = [{ label: 'Wet Sign' }];
-  constructor(public dialogService: DialogService) {}
+  constructor(public dialogService: DialogService, private route: ActivatedRoute) {}
 
   ngOnInit() {}
 

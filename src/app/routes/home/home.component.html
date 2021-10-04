@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="{ scenario2: scenario2$ | async } as route">
   <h1>Borrower Portal</h1>
   <div class="row">
     <div class="col col-12 col-md-9 mb-3" style="position: relative; z-index: 5;">
@@ -9,44 +9,52 @@
             <span class="d-none d-md-inline d-lg-inline d-xl-inline">Documents To Be Uploaded </span>
             <span class="ml-2 badge badge-warning">{{ totalDocs }}</span>
           </ng-template>
-          <p-accordion [multiple]="true">
+          <p-accordion [multiple]="true" *ngIf="!route.scenario2; else scen1">
             <p-accordionTab [selected]="true" *ngFor="let borrower of borrowers">
               <ng-template pTemplate="header">
                 {{ borrower.label }} <span class="ml-2 badge badge-warning">{{ borrower.docs.length }}</span>
               </ng-template>
               <ng-template pTemplate="content">
-                <table class="table table-sm table-bordered table-striped mb-0">
-                  <tbody>
-                    <tr *ngFor="let item of borrower.docs">
-                      <td>
-                        {{ item.label }}
-                        <ng-container *ngIf="item.hint">
-                          <br />
-                          <small
-                            ><em>
-                              {{ item.hint }}
-                            </em></small
-                          >
-                        </ng-container>
-                      </td>
-                      <td class="text-right upload-btn">
-                        <div class="d-block d-lg-none d-xl-none">
-                          <label class="p-button d-block" style="font-size: 16px;">
-                            <i class="fas fa-camera"></i> Take Picture
-                            <input type="file" multiple class="d-none" />
-                          </label>
-                        </div>
-                        <div class="d-none d-lg-block d-xl-block">
-                          <p-splitButton label="Upload" (onClick)="openUploadModal(item)" icon="fas fa-upload" [model]="items"></p-splitButton>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <a class="d-block p-2" (click)="openUploadModal()">Add additional documents</a>
+                <div>
+                  <table class="table table-sm table-bordered table-striped mb-0">
+                    <tbody>
+                      <tr *ngFor="let item of borrower.docs">
+                        <td>
+                          {{ item.label }}
+                          <ng-container *ngIf="item.hint">
+                            <br />
+                            <small
+                              ><em>
+                                {{ item.hint }}
+                              </em></small
+                            >
+                          </ng-container>
+                        </td>
+                        <td class="text-right upload-btn">
+                          <div class="d-block d-lg-none d-xl-none">
+                            <label class="p-button d-block" style="font-size: 16px;">
+                              <i class="fas fa-camera"></i> Take Picture
+                              <input type="file" multiple class="d-none" />
+                            </label>
+                          </div>
+                          <div class="d-none d-lg-block d-xl-block">
+                            <p-splitButton label="Upload" (onClick)="openUploadModal(item)" icon="fas fa-upload" [model]="items"></p-splitButton>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <a class="d-block p-2" (click)="openUploadModal()">Add additional documents</a>
+                </div>
               </ng-template>
             </p-accordionTab>
           </p-accordion>
+          <ng-template #scen1>
+            <div class="mb-3">
+              <h2>Upload Other Documents</h2>
+              <app-upload></app-upload>
+            </div>
+          </ng-template>
         </p-tabPanel>
         <p-tabPanel header="Completed">
           <ng-template pTemplate="header">
@@ -77,16 +85,6 @@
           </table>
         </p-tabPanel>
       </p-tabView>
-      <!--
-      <div class="mt-4">
-        <h2>Upload Other Documents</h2>
-        <div class="card">
-          <div class="card-body">
-            <app-upload></app-upload>
-          </div>
-        </div>
-      </div>
-      -->
     </div>
     <div class="col col-12 col-md-3 mb-3">
       <h2>Your Loan Team</h2>

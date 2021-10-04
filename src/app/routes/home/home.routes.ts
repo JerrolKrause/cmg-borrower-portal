@@ -5,6 +5,11 @@ import { HomeModule } from './home.module';
 
 const routes: Routes = [
   {
+    path: ':/config',
+    component: HomeComponent,
+    data: { title: 'Home' },
+  },
+  {
     path: '',
     component: HomeComponent,
     data: { title: 'Home' },
