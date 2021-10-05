@@ -1,5 +1,5 @@
 <div class="nts-file-uploader" *ngIf="{ drag: domEvents$ | async } as event">
-  <label #label [ngClass]="{ 'nts-drag-over': event.drag === 'dragover' }" [ngStyle]="stylesMain" [for]="uniqueId">
+  <label #label [ngClass]="{ 'nts-drag-over': event.drag === 'dragover' }" [ngStyle]="styles" [for]="uniqueId">
     <div class="nts-logo">
       <i class="fa fa-cloud-upload" aria-hidden="true"></i>
     </div>

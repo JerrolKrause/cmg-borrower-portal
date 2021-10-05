@@ -25,6 +25,8 @@ export class UploadComponent implements OnInit, OnDestroy {
     { label: 'Gift Letter', value: 'Gift Letter' },
   ];
 
+  public hasFiles = false;
+  public addMoreFiles = false;
   public results: Result[] = [...this.resultsSrc];
   constructor() {} // public uiState: UiStateService, // Global UI state // private domainState: DomainService, // Global domain state
 
@@ -41,6 +43,12 @@ export class UploadComponent implements OnInit, OnDestroy {
 
   public filesAdded(e: any) {
     this.files = e;
+  }
+
+  public cancel() {
+    this.files = null;
+    this.hasFiles = false;
+    this.addMoreFiles = false;
   }
 
   ngOnDestroy() {}

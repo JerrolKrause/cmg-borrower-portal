@@ -19,7 +19,6 @@ export class FileUploaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() placeholder = 'Click or drag and drop to <strong>upload files</strong>';
   @Input() subtext: string | null = null;
   @Input() multiple = false;
-  @Input() height = '265px';
   @Input() styles: Record<string, string> = {};
   @Output() filesAdded = new EventEmitter<NtsFileUpload[]>();
   @ViewChild('label', { static: false }) label!: ElementRef;
@@ -29,16 +28,10 @@ export class FileUploaderComponent implements OnInit, AfterViewInit, OnDestroy {
   public dropEvent$!: Subscription;
   public domEvents$ = new BehaviorSubject<string | null>(null);
   public uniqueId = 'nts-file-upload-' + Math.floor(Math.random() * 1000000);
-  public stylesMain: Record<string, string> = {};
 
   constructor() {}
 
-  ngOnInit() {
-    this.stylesMain = {
-      'min-height': '265px',
-      ...this.styles,
-    };
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
     // Stop drag events, set highlight

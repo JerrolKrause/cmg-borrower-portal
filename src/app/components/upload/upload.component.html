@@ -1,6 +1,10 @@
 <div class="nts-upload">
   <ng-container *ngIf="!files; else yepFiles">
-    <nts-file-uploader (filesAdded)="filesAdded($event)" [placeholder]="'Click or drag and drop to <strong>upload documents</strong>'"></nts-file-uploader>
+    <nts-file-uploader
+      [styles]="styles"
+      (filesAdded)="filesAddedSrc($event)"
+      [placeholder]="'Click or drag and drop to <strong>upload documents</strong>'"
+    ></nts-file-uploader>
   </ng-container>
   <ng-template #yepFiles>
     <table class="table table-sm table-striped">
@@ -37,12 +41,9 @@
         </tr>
       </tbody>
     </table>
-    <div class="d-flex justify-content-between small mb-3">
-      <a (click)="files = null">Add more documents</a>
-      <a (click)="files = null">Cancel</a>
-    </div>
+
     <div class="text-right" *ngIf="showSubmit">
-      <button class="p-button" (click)="files = null"><i class="fas fa-upload mr-2"></i> Upload</button>
+      <button class="p-button" (click)="files = null"><i class="fas fa-upload mr-2"></i> Upload All</button>
     </div>
   </ng-template>
 </div>

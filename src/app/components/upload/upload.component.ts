@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 interface Result {
   label: string;
   value: string;
@@ -12,7 +12,9 @@ interface Result {
 })
 export class UploadComponent implements OnInit {
   @Input() showSubmit = true;
+  @Input() styles = { 'min-height': '250px' };
   @Input() canSelectBorrower = true;
+  @Output() filesAdded = new EventEmitter();
   public success = false;
   public files: any;
   public text: string[] = [];
@@ -48,9 +50,17 @@ export class UploadComponent implements OnInit {
     console.log(e);
   }
 
-  public filesAdded(e: any) {
+  public filesAddedSrc(e: any) {
     console.log(e);
+    this.filesAdded.emit(e);
     this.files = e;
+  }
+
+  public cancel() {
+    console.log('Cancel');
+    this.files = null;
+    this.filesAdded.emit(null);
+    console.log('Cancel', this);
   }
 
   public submit() {}

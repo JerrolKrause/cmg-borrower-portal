@@ -20,7 +20,7 @@
     "build:qa": "ng build --configuration=qa",
     "build:uat": "ng build --configuration=uat",
     "build:prod": "ng build --configuration=production",
-    "deploy": "ng build --prod --base-href /angular-starter/ && angular-cli-ghpages --no-silent --dir=dist/browser",
+    "deploy": "ng build --prod --base-href /cmg-borrower-portal/ && angular-cli-ghpages --no-silent --dir=dist/browser",
     "gzip": "gzipper --verbose ./dist/browser",
     "docs": "compodoc -p tsconfig.json",
     "docs:serve": "compodoc -p tsconfig.json -s",

@@ -31,6 +31,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   public totalDocs = this.borrowers.map(b => b.docs.length).reduce((a, b) => a + b, 0);
 
   public items = [{ label: 'Wet Sign' }];
+  public hasFiles = false;
+  public addMoreFiles = false;
+
   constructor(public dialogService: DialogService, private route: ActivatedRoute) {}
 
   ngOnInit() {}
@@ -44,6 +47,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     ref.onClose.subscribe(x => {
       console.log(x);
     });
+  }
+
+  public cancel() {
+    this.hasFiles = false;
+    this.addMoreFiles = false;
   }
 
   /** Must be present even if not used for autounsub */

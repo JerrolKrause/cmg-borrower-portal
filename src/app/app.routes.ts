@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LayoutMainComponent } from './components/masterpage';
 import { NoContentComponent } from './routes/no-content/no-content.component';
-import { AuthGuard } from './shared/guards/auth.guard';
+// import { AuthGuard } from './shared/guards/auth.guard';
 
 export const ROUTES: Routes = [
   // Routes without masterpage or that do not need to be authenticated need to go first
@@ -31,7 +31,7 @@ export const ROUTES: Routes = [
         path: 'upload',
         loadChildren: () => import('./routes/upload/upload.module').then(m => m.UploadModule),
         data: { title: 'Please Log In' },
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
       },
       // Homepage non-lazy load implementation
       // {
@@ -50,7 +50,7 @@ export const ROUTES: Routes = [
         path: 'route',
         pathMatch: 'full',
         loadChildren: () => import('./routes/_route/route.module').then(m => m.RouteModule),
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
       },
 
       // Empty path string for homepage ('') needs to be LAST otherwise it catches all other routes
@@ -58,14 +58,14 @@ export const ROUTES: Routes = [
         path: '',
         pathMatch: 'full',
         loadChildren: () => import('./routes/home/home.module').then(m => m.HomeModule),
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
       },
 
       {
         path: '**',
         component: NoContentComponent,
         data: { title: 'Page Not Found' },
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
       },
     ],
   },
