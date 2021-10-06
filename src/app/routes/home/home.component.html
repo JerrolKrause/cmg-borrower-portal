@@ -5,8 +5,7 @@
       <p-tabView>
         <p-tabPanel>
           <ng-template pTemplate="header">
-            <span class="d-lg-none d-xl-none">Docs To Upload</span>
-            <span class="d-none d-md-inline d-lg-inline d-xl-inline">Upload Documents </span>
+            <span>Upload Documents </span>
             <span class="ml-2 badge badge-warning" *ngIf="!route.scenario2">{{ totalDocs }}</span>
           </ng-template>
           <p-accordion [multiple]="true">
