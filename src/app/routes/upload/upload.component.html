@@ -30,7 +30,7 @@
         <h2>Upload Other Documents</h2>
         <div class="card mb-3">
           <div class="card-body">
-            <app-upload #upload [showSubmit]="false" (filesAdded)="hasFiles = true"></app-upload>
+            <app-upload #upload  [canSelectBorrower]="false" [showSubmit]="false" (filesAdded)="hasFiles = true"></app-upload>
           </div>
         </div>
 

@@ -45,8 +45,8 @@
                   </table>
                   <div class="p-2">
                     <p class="mb-2" *ngIf="!route.scenario2">Add Additional Documents</p>
-                    <app-upload #upload [styles]="{ 'min-height': !route.scenario2 ? '100px' : '250px' }"></app-upload>
-                    <app-upload [showSubmit]="false" (filesAdded)="hasFiles = true" *ngIf="addMoreFiles"></app-upload>
+                    <app-upload #upload [canSelectBorrower]="false" [styles]="{ 'min-height': !route.scenario2 ? '100px' : '250px' }"></app-upload>
+                    <app-upload [canSelectBorrower]="false" [showSubmit]="false" (filesAdded)="hasFiles = true" *ngIf="addMoreFiles"></app-upload>
                   </div>
                 </div>
               </ng-template>
