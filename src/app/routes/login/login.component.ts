@@ -32,6 +32,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public frame = 1;
 
+  public options = [
+    { name: 'Loan Number', code: 0 },
+    { name: 'Email Address', code: 0 },
+    { name: 'Phone Number', code: 0 },
+    { name: 'Property Address', code: 0 },
+  ];
+  public selection = 0;
+
   constructor(
     private authService: AuthService,
     public route: ActivatedRoute,

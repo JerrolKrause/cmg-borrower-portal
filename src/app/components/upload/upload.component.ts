@@ -16,7 +16,7 @@ export class UploadComponent implements OnInit {
   @Input() canSelectBorrower = true;
   @Output() filesAdded = new EventEmitter();
   public success = false;
-  public files: any;
+  public files: any[] | null = null;
   public text: string[] = [];
   public resultsSrc: Result[] = [
     { label: 'W-2 forms', value: 'W-2 forms' },
@@ -28,6 +28,8 @@ export class UploadComponent implements OnInit {
     { label: 'Retirement and investment accounts', value: 'Retirement and investment accounts' },
     { label: 'Gift Letter', value: 'Gift Letter' },
   ];
+
+  public addMoreFiles = false;
 
   public borrower = 0;
   public borrowers = [
@@ -47,20 +49,30 @@ export class UploadComponent implements OnInit {
         .replace(/[^a-zA-Z ]/g, '')
         .includes(e.query.toLowerCase().replace(/[^a-zA-Z ]/g, '')),
     );
-    console.log(e);
   }
 
   public filesAddedSrc(e: any) {
-    console.log(e);
+    if (!this.files) {
+      this.files = [];
+    }
     this.filesAdded.emit(e);
-    this.files = e;
+    this.files = [...this.files, ...e];
+    this.addMoreFiles = false;
+  }
+
+  public delete(i: number) {
+    if (!this.files) {
+      return;
+    }
+    this.files = this.files.filter((_e, index) => i !== index);
+    if (!this.files.length) {
+      this.files = null;
+    }
   }
 
   public cancel() {
-    console.log('Cancel');
     this.files = null;
     this.filesAdded.emit(null);
-    console.log('Cancel', this);
   }
 
   public submit() {}

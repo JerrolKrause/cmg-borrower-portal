@@ -31,11 +31,6 @@
         <div class="card mb-3">
           <div class="card-body">
             <app-upload #upload [showSubmit]="false" (filesAdded)="hasFiles = true"></app-upload>
-            <app-upload [showSubmit]="false" (filesAdded)="hasFiles = true" *ngIf="addMoreFiles"></app-upload>
-            <div class="d-flex justify-content-between small mb-3" *ngIf="hasFiles">
-              <a (click)="addMoreFiles = true">Add more documents</a>
-              <a (click)="upload.cancel(); cancel()">Cancel</a>
-            </div>
           </div>
         </div>
 
