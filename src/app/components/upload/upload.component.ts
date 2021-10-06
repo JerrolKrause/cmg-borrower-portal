@@ -37,6 +37,8 @@ export class UploadComponent implements OnInit {
     { name: 'Jane Borrower', code: 1 },
   ];
 
+  public hasError: boolean[] = [];
+
   public results: Result[] = [...this.resultsSrc];
   constructor() {}
 
@@ -73,6 +75,17 @@ export class UploadComponent implements OnInit {
   public cancel() {
     this.files = null;
     this.filesAdded.emit(null);
+  }
+
+  public upload() {
+    if (!this.files) {
+      return;
+    }
+    this.hasError = this.files.map((_x, i) => !this.text[i]);
+    const hasErrors = this.hasError.reduce((a, b) => a || b, false);
+    if (!hasErrors) {
+      this.files = null;
+    }
   }
 
   public submit() {}

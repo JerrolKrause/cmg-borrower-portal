@@ -3,15 +3,15 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Document Type</th>
+        <th>Document Type<sup class="required">*</sup></th>
         <th *ngIf="canSelectBorrower">Borrower</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let file of files; let i = index">
-        <td>{{ file.file.name }}</td>
-        <td>
+        <td style="vertical-align: top;">{{ file.file.name }}</td>
+        <td style="vertical-align: top;">
           <p-autoComplete
             field="label"
             placeholder="Please select a type"
@@ -20,9 +20,11 @@
             [(ngModel)]="text[i]"
             [suggestions]="results"
             (completeMethod)="search($event)"
-          ></p-autoComplete>
+          ></p-autoComplete
+          ><br />
+          <small class="required" *ngIf="hasError[i]">This field is required</small>
         </td>
-        <td *ngIf="canSelectBorrower">
+        <td style="vertical-align: top;" *ngIf="canSelectBorrower">
           <p-dropdown [options]="borrowers" [(ngModel)]="borrower" optionLabel="name"></p-dropdown>
         </td>
         <td class="text-center">
@@ -47,6 +49,6 @@
    -->
 
   <div class="text-right mt-2" *ngIf="showSubmit && !!files">
-    <button class="p-button" (click)="files = null"><i class="fas fa-upload mr-2"></i> Upload All</button>
+    <button class="p-button" (click)="upload()"><i class="fas fa-upload mr-2"></i> Upload All</button>
   </div>
 </div>
